@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="520" viewBox="0 0 760 520" aria-labelledby="title desc" role="img">
+  <title id="title">Where is My Metro architecture</title>
+  <desc id="desc">Frontend PWA talks to Backend API over HTTPS JSON, which uses SQLite via Drizzle ORM.</desc>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .box { fill:#f8fafc; stroke:#0f172a; stroke-width:2; rx:10; ry:10; }
+      .label { font-family: 'Segoe UI', Arial, sans-serif; fill:#0f172a; font-size:16px; font-weight:600; }
+      .meta { font-family: 'Segoe UI', Arial, sans-serif; fill:#334155; font-size:14px; }
+      .arrow { stroke:#0f172a; stroke-width:2; fill:none; marker-end:url(#arrowhead); }
+      .caption { font-family: 'Segoe UI', Arial, sans-serif; fill:#0f172a; font-size:13px; }
+    ]]></style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#0f172a" />
+    </marker>
+  </defs>
+
+  <!-- Frontend -->
+  <rect class="box" x="80" y="60" width="260" height="140" />
+  <text class="label" x="210" y="96" text-anchor="middle">Frontend (PWA)</text>
+  <text class="meta" x="210" y="122" text-anchor="middle">React · Vite · TypeScript</text>
+  <text class="meta" x="210" y="144" text-anchor="middle">Tailwind · Zustand</text>
+  <text class="meta" x="210" y="166" text-anchor="middle">Leaflet · Axios</text>
+
+  <!-- Backend -->
+  <rect class="box" x="420" y="200" width="260" height="140" />
+  <text class="label" x="550" y="236" text-anchor="middle">Backend API</text>
+  <text class="meta" x="550" y="262" text-anchor="middle">Node.js · Express · TypeScript</text>
+  <text class="meta" x="550" y="284" text-anchor="middle">Controllers · Services · Routing</text>
+  <text class="meta" x="550" y="306" text-anchor="middle">Drizzle ORM</text>
+
+  <!-- Database -->
+  <rect class="box" x="220" y="360" width="260" height="120" />
+  <text class="label" x="350" y="396" text-anchor="middle">Data Store</text>
+  <text class="meta" x="350" y="422" text-anchor="middle">SQLite (Drizzle)</text>
+  <text class="meta" x="350" y="444" text-anchor="middle">Lines · Stations · Connections · Schedules</text>
+
+  <!-- Arrows -->
+  <line class="arrow" x1="340" y1="140" x2="420" y2="240" />
+  <text class="caption" x="380" y="188" text-anchor="middle">HTTPS / JSON</text>
+
+  <line class="arrow" x1="520" y1="320" x2="420" y2="400" />
+  <text class="caption" x="460" y="360" text-anchor="middle">SQL</text>
+
+  <!-- Observability placeholder -->
+  <rect class="box" x="520" y="40" width="160" height="80" />
+  <text class="label" x="600" y="72" text-anchor="middle">Observability</text>
+  <text class="meta" x="600" y="94" text-anchor="middle">Logs · Metrics (future)</text>
+  <line class="arrow" x1="550" y1="200" x2="600" y2="120" />
+
+</svg>
