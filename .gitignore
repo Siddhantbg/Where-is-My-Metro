@@ -1,0 +1,27 @@
+# Root gitignore
+
+# Node modules
+frontend/node_modules/
+backend/node_modules/
+
+# Environment files
+**/.env
+**/.env.*
+
+# Build outputs
+frontend/dist/
+backend/dist/
+
+# Logs
+**/*.log
+
+# Windows device placeholders
+nul
+backend/nul
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

@@ -1,0 +1,14 @@
+# Backend ignores
+
+node_modules/
+dist/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# Windows device placeholder
+nul

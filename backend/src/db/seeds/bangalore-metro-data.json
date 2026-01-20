@@ -1,0 +1,551 @@
+{
+  "city": {
+    "id": "bangalore",
+    "name": "Bangalore",
+    "displayName": "Namma Metro",
+    "country": "India",
+    "timezone": "Asia/Kolkata",
+    "mapCenter": {
+      "lat": 12.9716,
+      "lng": 77.5946
+    }
+  },
+  "lines": [
+    {
+      "id": "bangalore-purple",
+      "cityId": "bangalore",
+      "name": "Purple Line",
+      "color": "#9B51E0",
+      "displayOrder": 1
+    },
+    {
+      "id": "bangalore-green",
+      "cityId": "bangalore",
+      "name": "Green Line",
+      "color": "#27AE60",
+      "displayOrder": 2
+    }
+  ],
+  "stations": [
+    {
+      "id": "bangalore-whitefield",
+      "cityId": "bangalore",
+      "name": "Whitefield (Kadugodi)",
+      "latitude": 12.9984,
+      "longitude": 77.7491,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-kadugodi-tree-park",
+      "cityId": "bangalore",
+      "name": "Kadugodi Tree Park",
+      "latitude": 12.9951,
+      "longitude": 77.7445,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-hopefarm",
+      "cityId": "bangalore",
+      "name": "Hopefarm",
+      "latitude": 12.9924,
+      "longitude": 77.7398,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-itpl",
+      "cityId": "bangalore",
+      "name": "ITPL (Pattandur Agrahara)",
+      "latitude": 12.9878,
+      "longitude": 77.7297,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-nallurhalli",
+      "cityId": "bangalore",
+      "name": "Nallurhalli",
+      "latitude": 12.9827,
+      "longitude": 77.7197,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-kundalahalli",
+      "cityId": "bangalore",
+      "name": "Kundalahalli",
+      "latitude": 12.9757,
+      "longitude": 77.7077,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-seetharampalya",
+      "cityId": "bangalore",
+      "name": "Seetharampalya",
+      "latitude": 12.9712,
+      "longitude": 77.6965,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-hoodi",
+      "cityId": "bangalore",
+      "name": "Hoodi",
+      "latitude": 12.9667,
+      "longitude": 77.6858,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-garudacharapalya",
+      "cityId": "bangalore",
+      "name": "Garudacharapalya",
+      "latitude": 12.9612,
+      "longitude": 77.6741,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-kr-puram",
+      "cityId": "bangalore",
+      "name": "KR Puram",
+      "latitude": 12.9535,
+      "longitude": 77.6602,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-benniganahalli",
+      "cityId": "bangalore",
+      "name": "Benniganahalli",
+      "latitude": 12.9494,
+      "longitude": 77.6434,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-baiyappanahalli",
+      "cityId": "bangalore",
+      "name": "Baiyappanahalli",
+      "latitude": 12.9468,
+      "longitude": 77.6324,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-swami-vivekananda-road",
+      "cityId": "bangalore",
+      "name": "Swami Vivekananda Road",
+      "latitude": 12.9433,
+      "longitude": 77.6223,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-indiranagar",
+      "cityId": "bangalore",
+      "name": "Indiranagar",
+      "latitude": 12.9781,
+      "longitude": 77.6409,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-halasuru",
+      "cityId": "bangalore",
+      "name": "Halasuru",
+      "latitude": 12.9747,
+      "longitude": 77.6217,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-trinity",
+      "cityId": "bangalore",
+      "name": "Trinity",
+      "latitude": 12.9736,
+      "longitude": 77.6124,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-mg-road",
+      "cityId": "bangalore",
+      "name": "MG Road",
+      "latitude": 12.9756,
+      "longitude": 77.6066,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-cubbon-park",
+      "cityId": "bangalore",
+      "name": "Cubbon Park",
+      "latitude": 12.9766,
+      "longitude": 77.5946,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-vidhana-soudha",
+      "cityId": "bangalore",
+      "name": "Vidhana Soudha",
+      "latitude": 12.9795,
+      "longitude": 77.5906,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-sir-m-visvesvaraya",
+      "cityId": "bangalore",
+      "name": "Sir M Visvesvaraya",
+      "latitude": 12.9806,
+      "longitude": 77.5850,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-majestic",
+      "cityId": "bangalore",
+      "name": "Kempegowda (Majestic)",
+      "latitude": 12.9767,
+      "longitude": 77.5719,
+      "isInterchange": true
+    },
+    {
+      "id": "bangalore-city-railway-station",
+      "cityId": "bangalore",
+      "name": "City Railway Station",
+      "latitude": 12.9772,
+      "longitude": 77.5683,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-magadi-road",
+      "cityId": "bangalore",
+      "name": "Magadi Road",
+      "latitude": 12.9761,
+      "longitude": 77.5532,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-vijayanagar",
+      "cityId": "bangalore",
+      "name": "Vijayanagar",
+      "latitude": 12.9647,
+      "longitude": 77.5376,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-attiguppe",
+      "cityId": "bangalore",
+      "name": "Attiguppe",
+      "latitude": 12.9554,
+      "longitude": 77.5279,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-deepanjali-nagar",
+      "cityId": "bangalore",
+      "name": "Deepanjali Nagar",
+      "latitude": 12.9467,
+      "longitude": 77.5209,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-mysore-road",
+      "cityId": "bangalore",
+      "name": "Mysore Road",
+      "latitude": 12.9356,
+      "longitude": 77.5125,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-nayandahalli",
+      "cityId": "bangalore",
+      "name": "Nayandahalli",
+      "latitude": 12.9258,
+      "longitude": 77.5025,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-rajarajeshwari-nagar",
+      "cityId": "bangalore",
+      "name": "Rajarajeshwari Nagar",
+      "latitude": 12.9167,
+      "longitude": 77.4936,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-jnanabharathi",
+      "cityId": "bangalore",
+      "name": "Jnanabharathi",
+      "latitude": 12.9064,
+      "longitude": 77.4867,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-pattanagere",
+      "cityId": "bangalore",
+      "name": "Pattanagere",
+      "latitude": 12.8978,
+      "longitude": 77.4789,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-kengeri",
+      "cityId": "bangalore",
+      "name": "Kengeri",
+      "latitude": 12.8867,
+      "longitude": 77.4712,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-kengeri-bus-terminal",
+      "cityId": "bangalore",
+      "name": "Kengeri Bus Terminal",
+      "latitude": 12.8789,
+      "longitude": 77.4656,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-challaghatta",
+      "cityId": "bangalore",
+      "name": "Challaghatta",
+      "latitude": 12.8712,
+      "longitude": 77.4598,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-madavara",
+      "cityId": "bangalore",
+      "name": "Madavara (BIEC)",
+      "latitude": 13.0456,
+      "longitude": 77.5523,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-chikkabidarakallu",
+      "cityId": "bangalore",
+      "name": "Chikkabidarakallu",
+      "latitude": 13.0389,
+      "longitude": 77.5534,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-manjunathanagar",
+      "cityId": "bangalore",
+      "name": "Manjunathanagar",
+      "latitude": 13.0312,
+      "longitude": 77.5545,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-nagasandra",
+      "cityId": "bangalore",
+      "name": "Nagasandra",
+      "latitude": 13.0267,
+      "longitude": 77.5556,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-dasarahalli",
+      "cityId": "bangalore",
+      "name": "Dasarahalli",
+      "latitude": 13.0223,
+      "longitude": 77.5567,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-jalahalli",
+      "cityId": "bangalore",
+      "name": "Jalahalli",
+      "latitude": 13.0156,
+      "longitude": 77.5589,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-peenya-industry",
+      "cityId": "bangalore",
+      "name": "Peenya Industry",
+      "latitude": 13.0089,
+      "longitude": 77.5612,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-peenya",
+      "cityId": "bangalore",
+      "name": "Peenya",
+      "latitude": 13.0012,
+      "longitude": 77.5634,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-goraguntepalya",
+      "cityId": "bangalore",
+      "name": "Goraguntepalya",
+      "latitude": 12.9967,
+      "longitude": 77.5656,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-yeshwanthpur",
+      "cityId": "bangalore",
+      "name": "Yeshwanthpur",
+      "latitude": 12.9889,
+      "longitude": 77.5678,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-sandal-soap-factory",
+      "cityId": "bangalore",
+      "name": "Sandal Soap Factory",
+      "latitude": 12.9834,
+      "longitude": 77.5701,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-mahalakshmi",
+      "cityId": "bangalore",
+      "name": "Mahalakshmi",
+      "latitude": 12.9789,
+      "longitude": 77.5723,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-rajajinagar",
+      "cityId": "bangalore",
+      "name": "Rajajinagar",
+      "latitude": 12.9756,
+      "longitude": 77.5712,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-mahakavi-kuvempu-road",
+      "cityId": "bangalore",
+      "name": "Mahakavi Kuvempu Road",
+      "latitude": 12.9734,
+      "longitude": 77.5701,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-srirampura",
+      "cityId": "bangalore",
+      "name": "Srirampura",
+      "latitude": 12.9712,
+      "longitude": 77.5689,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-mantri-square",
+      "cityId": "bangalore",
+      "name": "Mantri Square Sampige Road",
+      "latitude": 12.9689,
+      "longitude": 77.5678,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-chikpete",
+      "cityId": "bangalore",
+      "name": "Chikpete",
+      "latitude": 12.9656,
+      "longitude": 77.5734,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-kr-market",
+      "cityId": "bangalore",
+      "name": "Krishna Rajendra Market",
+      "latitude": 12.9612,
+      "longitude": 77.5756,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-national-college",
+      "cityId": "bangalore",
+      "name": "National College",
+      "latitude": 12.9567,
+      "longitude": 77.5778,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-lalbagh",
+      "cityId": "bangalore",
+      "name": "Lalbagh Botanical Garden",
+      "latitude": 12.9523,
+      "longitude": 77.5801,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-south-end-circle",
+      "cityId": "bangalore",
+      "name": "South End Circle",
+      "latitude": 12.9478,
+      "longitude": 77.5823,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-jayanagar",
+      "cityId": "bangalore",
+      "name": "Jayanagar",
+      "latitude": 12.9434,
+      "longitude": 77.5845,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-rv-road",
+      "cityId": "bangalore",
+      "name": "Rashtreeya Vidyalaya Road",
+      "latitude": 12.9389,
+      "longitude": 77.5867,
+      "isInterchange": true
+    },
+    {
+      "id": "bangalore-banashankari",
+      "cityId": "bangalore",
+      "name": "Banashankari",
+      "latitude": 12.9345,
+      "longitude": 77.5889,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-jaya-prakash-nagar",
+      "cityId": "bangalore",
+      "name": "Jaya Prakash Nagar",
+      "latitude": 12.9301,
+      "longitude": 77.5912,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-yelachenahalli",
+      "cityId": "bangalore",
+      "name": "Yelachenahalli",
+      "latitude": 12.9256,
+      "longitude": 77.5934,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-konanakunte-cross",
+      "cityId": "bangalore",
+      "name": "Konanakunte Cross",
+      "latitude": 12.9212,
+      "longitude": 77.5956,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-doddakallasandra",
+      "cityId": "bangalore",
+      "name": "Doddakallasandra",
+      "latitude": 12.9167,
+      "longitude": 77.5978,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-vajarahalli",
+      "cityId": "bangalore",
+      "name": "Vajarahalli",
+      "latitude": 12.9123,
+      "longitude": 77.6001,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-thalaghattapura",
+      "cityId": "bangalore",
+      "name": "Thalaghattapura",
+      "latitude": 12.9078,
+      "longitude": 77.6023,
+      "isInterchange": false
+    },
+    {
+      "id": "bangalore-silk-institute",
+      "cityId": "bangalore",
+      "name": "Silk Institute",
+      "latitude": 12.9034,
+      "longitude": 77.6045,
+      "isInterchange": false
+    }
+  ]
+}

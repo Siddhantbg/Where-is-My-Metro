@@ -1,0 +1,72 @@
+[
+  {
+    "id": "rajiv-chowk",
+    "name": "Rajiv Chowk",
+    "latitude": 28.6328,
+    "longitude": 77.2197,
+    "isInterchange": true
+  },
+  {
+    "id": "connaught-place",
+    "name": "Connaught Place",
+    "latitude": 28.6304,
+    "longitude": 77.2177,
+    "isInterchange": false
+  },
+  {
+    "id": "new-delhi",
+    "name": "New Delhi",
+    "latitude": 28.6431,
+    "longitude": 77.2197,
+    "isInterchange": false
+  },
+  {
+    "id": "chandni-chowk",
+    "name": "Chandni Chowk",
+    "latitude": 28.6579,
+    "longitude": 77.2304,
+    "isInterchange": false
+  },
+  {
+    "id": "kashmere-gate",
+    "name": "Kashmere Gate",
+    "latitude": 28.6676,
+    "longitude": 77.2273,
+    "isInterchange": true
+  },
+  {
+    "id": "karol-bagh",
+    "name": "Karol Bagh",
+    "latitude": 28.6510,
+    "longitude": 77.1905,
+    "isInterchange": false
+  },
+  {
+    "id": "dwarka-sector-21",
+    "name": "Dwarka Sector 21",
+    "latitude": 28.5525,
+    "longitude": 77.0584,
+    "isInterchange": false
+  },
+  {
+    "id": "noida-city-centre",
+    "name": "Noida City Centre",
+    "latitude": 28.5748,
+    "longitude": 77.3564,
+    "isInterchange": false
+  },
+  {
+    "id": "huda-city-centre",
+    "name": "HUDA City Centre",
+    "latitude": 28.4595,
+    "longitude": 77.0726,
+    "isInterchange": false
+  },
+  {
+    "id": "hauz-khas",
+    "name": "Hauz Khas",
+    "latitude": 28.5434,
+    "longitude": 77.2069,
+    "isInterchange": true
+  }
+]

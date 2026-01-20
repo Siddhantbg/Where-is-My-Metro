@@ -1,0 +1,50 @@
+[
+  {
+    "id": "red",
+    "name": "Red Line",
+    "color": "#E21B28",
+    "displayOrder": 1
+  },
+  {
+    "id": "blue",
+    "name": "Blue Line",
+    "color": "#0066B3",
+    "displayOrder": 2
+  },
+  {
+    "id": "yellow",
+    "name": "Yellow Line",
+    "color": "#F7B500",
+    "displayOrder": 3
+  },
+  {
+    "id": "green",
+    "name": "Green Line",
+    "color": "#00A550",
+    "displayOrder": 4
+  },
+  {
+    "id": "violet",
+    "name": "Violet Line",
+    "color": "#8B008B",
+    "displayOrder": 5
+  },
+  {
+    "id": "pink",
+    "name": "Pink Line",
+    "color": "#E91E8C",
+    "displayOrder": 6
+  },
+  {
+    "id": "magenta",
+    "name": "Magenta Line",
+    "color": "#D81F98",
+    "displayOrder": 7
+  },
+  {
+    "id": "grey",
+    "name": "Grey Line",
+    "color": "#808080",
+    "displayOrder": 8
+  }
+]
