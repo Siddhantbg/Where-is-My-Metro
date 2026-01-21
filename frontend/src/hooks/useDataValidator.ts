@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
-// Go validator server URL (runs on port 5001 by default)
-const VALIDATOR_API_URL = 'http://localhost:5001';
+// Go validator server URL - use environment variable or fallback to localhost for dev
+const VALIDATOR_API_URL = import.meta.env.VITE_VALIDATOR_URL || 'http://localhost:5001';
 
 interface ValidationIssue {
   severity: 'error' | 'warning';
