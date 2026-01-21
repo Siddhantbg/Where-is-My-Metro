@@ -1,7 +1,12 @@
 import { useState, useCallback } from 'react';
 
 // Go validator server URL - use environment variable or fallback to localhost for dev
-const VALIDATOR_API_URL = import.meta.env.VITE_VALIDATOR_URL || 'http://localhost:5001';
+// Prefer env var; if missing in hosted builds, fall back to production validator when not on localhost
+const VALIDATOR_API_URL =
+  import.meta.env.VITE_VALIDATOR_URL ||
+  (typeof window !== 'undefined' && window.location.origin.includes('vercel.app')
+    ? 'https://metro-validator.onrender.com'
+    : 'http://localhost:5001');
 
 interface ValidationIssue {
   severity: 'error' | 'warning';
