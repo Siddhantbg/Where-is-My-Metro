@@ -5,13 +5,13 @@ import { metroLines, metroStations, lineStations } from '../db/schema';
 
 export const getAllLines = async (req: Request, res: Response) => {
   try {
-    const { cityId } = req.query;
+    const cityId = req.query.cityId as string | undefined;
 
     let query = db.select().from(metroLines);
 
     // Filter by cityId if provided
-    if (cityId && typeof cityId === 'string') {
-      query = query.where(eq(metroLines.cityId, cityId)) as any;
+    if (cityId) {
+      query = query.where(eq(metroLines.cityId, cityId as any));
     }
 
     const lines = await query.orderBy(metroLines.displayOrder);
@@ -40,13 +40,13 @@ export const getLineById = async (req: Request, res: Response) => {
 
 export const getLinesWithStations = async (req: Request, res: Response) => {
   try {
-    const { cityId } = req.query;
+    const cityId = req.query.cityId as string | undefined;
 
     // Get all metro lines ordered by displayOrder, filtered by cityId if provided
     let query = db.select().from(metroLines);
 
-    if (cityId && typeof cityId === 'string') {
-      query = query.where(eq(metroLines.cityId, cityId)) as any;
+    if (cityId) {
+      query = query.where(eq(metroLines.cityId, cityId as any));
     }
 
     const lines = await query.orderBy(metroLines.displayOrder);

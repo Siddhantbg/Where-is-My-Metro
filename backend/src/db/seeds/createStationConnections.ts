@@ -9,7 +9,7 @@ async function createStationConnections() {
 
   try {
     // Get all lines
-    const lines = sqlite.prepare('SELECT * FROM metro_lines ORDER BY display_order').all();
+    const lines = sqlite.prepare('SELECT * FROM metro_lines ORDER BY display_order').all() as any[];
 
     console.log(`Found ${lines.length} metro lines`);
 
@@ -29,7 +29,7 @@ async function createStationConnections() {
         FROM line_stations
         WHERE line_id = ?
         ORDER BY sequence_number ASC
-      `).all(line.id);
+      `).all(line.id) as any[];
 
       console.log(`  Found ${stations.length} stations`);
 
@@ -63,7 +63,7 @@ async function createStationConnections() {
     console.log(`\n✅ Successfully created ${totalConnections} station connections`);
 
     // Verify
-    const count = sqlite.prepare('SELECT COUNT(*) as count FROM station_connections').get();
+    const count = sqlite.prepare('SELECT COUNT(*) as count FROM station_connections').get() as any;
     console.log(`\nVerification: ${count.count} connections in database`);
 
   } catch (error) {

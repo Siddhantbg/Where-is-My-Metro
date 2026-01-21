@@ -5,7 +5,8 @@ import { metroStations, lineStations } from '../db/schema';
 
 export const getAllStations = async (req: Request, res: Response) => {
   try {
-    const { lineId, cityId } = req.query;
+    const lineId = req.query.lineId as string | undefined;
+    const cityId = req.query.cityId as string | undefined;
 
     if (lineId) {
       // Get stations for a specific line with proper ordering
@@ -20,7 +21,7 @@ export const getAllStations = async (req: Request, res: Response) => {
         })
         .from(metroStations)
         .innerJoin(lineStations, eq(metroStations.id, lineStations.stationId))
-        .where(eq(lineStations.lineId, lineId as string))
+        .where(eq(lineStations.lineId, lineId))
         .orderBy(lineStations.sequenceNumber);
 
       return res.json(stationsWithOrder);
@@ -29,8 +30,8 @@ export const getAllStations = async (req: Request, res: Response) => {
     // Get all stations, optionally filtered by cityId
     let query = db.select().from(metroStations);
 
-    if (cityId && typeof cityId === 'string') {
-      query = query.where(eq(metroStations.cityId, cityId)) as any;
+    if (cityId) {
+      query = query.where(eq(metroStations.cityId, cityId as any));
     }
 
     const stations = await query;
@@ -59,21 +60,24 @@ export const getStationById = async (req: Request, res: Response) => {
 
 export const getNearbyStations = async (req: Request, res: Response) => {
   try {
-    const { lat, lng, radius = 2000, cityId } = req.query;
+    const lat = req.query.lat as string | undefined;
+    const lng = req.query.lng as string | undefined;
+    const radius = req.query.radius as string | undefined;
+    const cityId = req.query.cityId as string | undefined;
 
     if (!lat || !lng) {
       return res.status(400).json({ error: 'Latitude and longitude are required' });
     }
 
-    const userLat = parseFloat(lat as string);
-    const userLng = parseFloat(lng as string);
-    const radiusMeters = parseInt(radius as string);
+    const userLat = parseFloat(lat);
+    const userLng = parseFloat(lng);
+    const radiusMeters = parseInt(radius || '2000');
 
     // Get all stations (filtered by cityId if provided) and calculate distance using Haversine formula
     let query = db.select().from(metroStations);
 
-    if (cityId && typeof cityId === 'string') {
-      query = query.where(eq(metroStations.cityId, cityId)) as any;
+    if (cityId) {
+      query = query.where(eq(metroStations.cityId, cityId as any));
     }
 
     const allStations = await query;

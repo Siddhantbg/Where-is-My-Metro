@@ -121,21 +121,22 @@ export async function reportTrainSighting(req: Request, res: Response) {
 export async function getTrainPositions(req: Request, res: Response) {
   try {
     const { lineId } = req.params;
-    const { direction, maxAge = 600 } = req.query; // maxAge in seconds (default 10 min)
+    const direction = req.query.direction as string | undefined;
+    const maxAge = req.query.maxAge as string | undefined;
 
     let positions;
 
-    if (direction && ['forward', 'backward'].includes(direction as string)) {
+    if (direction && ['forward', 'backward'].includes(direction)) {
       // Get position for specific direction
       const position = await estimateTrainPosition(
         lineId,
         direction as 'forward' | 'backward',
-        Number(maxAge)
+        Number(maxAge || 600)
       );
       positions = position ? [position] : [];
     } else {
       // Get positions for both directions
-      positions = await getAllTrainPositions(lineId, Number(maxAge));
+      positions = await getAllTrainPositions(lineId, Number(maxAge || 600));
     }
 
     return res.json({
