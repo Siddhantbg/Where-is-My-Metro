@@ -17,8 +17,12 @@ export const useStore = create<StoreState>()(
       {
         name: 'metro-tracker-storage',
         partialize: (state) => ({
-          // Only persist location permission, not full location data
+          // Persist minimal session info so refresh keeps context
           locationPermission: state.locationPermission,
+          selectedCity: state.selectedCity,
+          origin: state.origin,
+          destination: state.destination,
+          currentJourney: state.currentJourney,
         }),
       }
     )
