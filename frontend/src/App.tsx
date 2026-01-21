@@ -10,13 +10,23 @@ import { RouteDisplay } from './components/journey/RouteDisplay';
 import { MapView } from './components/map/MapView';
 import { DataValidator } from './components/admin';
 import { InTransitTracker } from './components/tracking/InTransitTracker';
+import { MapPin, AlertCircle } from 'lucide-react';
 
 function App() {
-  const { userLocation, nearbyStations, currentJourney, setOrigin, selectedCity, setSelectedCity } = useStore();
+  const { 
+    userLocation, 
+    nearbyStations, 
+    currentJourney, 
+    setOrigin, 
+    selectedCity, 
+    setSelectedCity,
+    clearJourney,
+  } = useStore();
   const { location } = useGeolocation();
   const [showManualSelect, setShowManualSelect] = useState(false);
   const [showCitySelect, setShowCitySelect] = useState(false);
   const [showCitySuccess, setShowCitySuccess] = useState(false);
+  const [showLocationChangeWarning, setShowLocationChangeWarning] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
 
   // Fetch nearby stations when location is available
@@ -32,6 +42,13 @@ function App() {
   };
 
   const handleCitySelect = (cityId: string) => {
+    // If already had a city selected, show warning and clear journey
+    if (selectedCity && selectedCity !== cityId) {
+      clearJourney();
+      setShowLocationChangeWarning(true);
+      setTimeout(() => setShowLocationChangeWarning(false), 4000);
+    }
+    
     setSelectedCity(cityId);
     setShowCitySelect(false);
     setShowCitySuccess(true);
@@ -44,10 +61,14 @@ function App() {
 
   const handleCloseCitySelect = () => {
     setShowCitySelect(false);
-    // Don't reset showManualSelect - keep it true so LocationPermission doesn't reappear
   };
 
-  return (
+  const handleChangeLocation = () => {
+    setShowLocationChangeWarning(true);
+    setTimeout(() => setShowLocationChangeWarning(false), 4000);
+    setShowCitySelect(true);
+  };
+
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
@@ -71,15 +92,42 @@ function App() {
                 Where is My Metro
               </h1>
             </div>
-            <div className="text-sm text-gray-600">
-              Multi‑City Metro Navigator
+            <div className="flex items-center gap-4">
+              {selectedCity && (
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-gray-500" />
+                  <span className="text-sm font-medium text-gray-700 capitalize">
+                    {selectedCity === 'delhi' ? 'Delhi' : selectedCity}
+                  </span>
+                  <button
+                    onClick={handleChangeLocation}
+                    className="ml-2 px-3 py-1 text-xs bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full font-medium transition-colors"
+                  >
+                    Change
+                  </button>
+                </div>
+              )}
+              <div className="text-sm text-gray-600">
+                Multi‑City Metro Navigator
+              </div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Location Permission Dialog */}
-      {!userLocation && !showManualSelect && (
+      {/* Location change warning */}
+      {showLocationChangeWarning && (
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 flex items-center gap-3 bg-orange-50 border border-orange-300 rounded-lg px-4 py-3 max-w-md shadow-lg animate-slide-down">
+          <AlertCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
+          <div>
+            <p className="text-sm font-medium text-orange-900">Location changed</p>
+            <p className="text-xs text-orange-800">Your previous route has been reset</p>
+          </div>
+        </div>
+      )}
+
+      {/* Location Permission Dialog - only show if no city selected yet */}
+      {!selectedCity && !showManualSelect && (
         <LocationPermission onManualSelect={handleManualSelect} />
       )}
 
