@@ -24,22 +24,22 @@ var (
 
 // Output helpers
 var (
-	green   = color.New(color.FgGreen).SprintFunc()
-	red     = color.New(color.FgRed).SprintFunc()
-	yellow  = color.New(color.FgYellow).SprintFunc()
-	cyan    = color.New(color.FgCyan).SprintFunc()
-	bold    = color.New(color.Bold).SprintFunc()
-	dimmed  = color.New(color.Faint).SprintFunc()
+	green  = color.New(color.FgGreen).SprintFunc()
+	red    = color.New(color.FgRed).SprintFunc()
+	yellow = color.New(color.FgYellow).SprintFunc()
+	cyan   = color.New(color.FgCyan).SprintFunc()
+	bold   = color.New(color.Bold).SprintFunc()
+	dimmed = color.New(color.Faint).SprintFunc()
 )
 
 // JSONOutput represents the JSON output structure
 type JSONOutput struct {
-	Database  string                      `json:"database"`
-	Timestamp string                      `json:"timestamp"`
-	Stats     *database.Stats             `json:"stats"`
+	Database  string                        `json:"database"`
+	Timestamp string                        `json:"timestamp"`
+	Stats     *database.Stats               `json:"stats"`
 	Results   map[string]*validators.Result `json:"results"`
-	Issues    []validators.Issue          `json:"issues"`
-	Status    string                      `json:"status"`
+	Issues    []validators.Issue            `json:"issues"`
+	Status    string                        `json:"status"`
 }
 
 func main() {
