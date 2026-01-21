@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { MetroLine } from '../../types/metro';
 import { LineBadge } from './LineBadge';
 import { useStore } from '../../store';
+import api from '../../services/api';
 
 interface LineSelectDropdownProps {
   placeholder: string;
@@ -26,11 +27,10 @@ export function LineSelectDropdown({
         setLoading(true);
         // Filter lines by selected city
         const url = selectedCity
-          ? `http://localhost:5000/api/lines?cityId=${selectedCity}`
-          : 'http://localhost:5000/api/lines';
-        const response = await fetch(url);
-        const data = await response.json();
-        setLines(data);
+          ? `/lines?cityId=${selectedCity}`
+          : '/lines';
+        const response = await api.get(url);
+        setLines(response.data);
       } catch (error) {
         console.error('Failed to fetch metro lines:', error);
       } finally {

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { MetroStation } from '../../types/metro';
 import { MetroIcon, InterchangeIcon } from '../icons/FacilityIcons';
 import { LineBadge } from './LineBadge';
+import api from '../../services/api';
 
 interface StationSelectDropdownProps {
   placeholder: string;
@@ -37,8 +38,8 @@ export function StationSelectDropdown({
 
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:5000/api/stations?lineId=${lineId}`);
-        const data = await response.json();
+        const response = await api.get(`/stations?lineId=${lineId}`);
+        const data = response.data;
 
         // Add order based on sequenceNumber or index
         const stationsWithOrder = data.map((station: any, idx: number) => ({

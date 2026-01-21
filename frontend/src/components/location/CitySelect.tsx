@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
+import api from '../../services/api';
 
 interface City {
   id: string;
@@ -26,12 +27,8 @@ export function CitySelect({ onCitySelect, onClose }: CitySelectProps) {
   useEffect(() => {
     async function fetchCities() {
       try {
-        const response = await fetch('http://localhost:5000/api/cities');
-        if (!response.ok) {
-          throw new Error('Failed to fetch cities');
-        }
-        const data = await response.json();
-        setCities(data);
+        const response = await api.get('/cities');
+        setCities(response.data);
       } catch (err) {
         setError('Failed to load cities. Please try again.');
         console.error('Error fetching cities:', err);

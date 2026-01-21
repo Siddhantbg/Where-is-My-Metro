@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import api from '../services/api';
 
 interface City {
   id: string;
@@ -20,12 +21,8 @@ export function useCities() {
   useEffect(() => {
     async function fetchCities() {
       try {
-        const response = await fetch('http://localhost:5000/api/cities');
-        if (!response.ok) {
-          throw new Error('Failed to fetch cities');
-        }
-        const data = await response.json();
-        setCities(data);
+        const response = await api.get('/cities');
+        setCities(response.data);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load cities');
