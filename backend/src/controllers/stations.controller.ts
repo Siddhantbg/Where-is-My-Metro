@@ -28,13 +28,10 @@ export const getAllStations = async (req: Request, res: Response) => {
     }
 
     // Get all stations, optionally filtered by cityId
-    let query = db.select().from(metroStations);
+    const stations = cityId
+      ? await db.select().from(metroStations).where(eq(metroStations.cityId, cityId))
+      : await db.select().from(metroStations);
 
-    if (cityId) {
-      query = query.where(eq(metroStations.cityId, cityId as any));
-    }
-
-    const stations = await query;
     res.json(stations);
   } catch (error) {
     console.error('Error fetching stations:', error);
@@ -44,7 +41,7 @@ export const getAllStations = async (req: Request, res: Response) => {
 
 export const getStationById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const station = await db.select().from(metroStations).where(eq(metroStations.id, id)).limit(1);
 
     if (station.length === 0) {
@@ -74,13 +71,9 @@ export const getNearbyStations = async (req: Request, res: Response) => {
     const radiusMeters = parseInt(radius || '2000');
 
     // Get all stations (filtered by cityId if provided) and calculate distance using Haversine formula
-    let query = db.select().from(metroStations);
-
-    if (cityId) {
-      query = query.where(eq(metroStations.cityId, cityId as any));
-    }
-
-    const allStations = await query;
+    const allStations = cityId
+      ? await db.select().from(metroStations).where(eq(metroStations.cityId, cityId))
+      : await db.select().from(metroStations);
 
     // Calculate distances and filter
     const stationsWithDistance = allStations

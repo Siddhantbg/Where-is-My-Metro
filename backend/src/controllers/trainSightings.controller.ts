@@ -120,7 +120,7 @@ export async function reportTrainSighting(req: Request, res: Response) {
  */
 export async function getTrainPositions(req: Request, res: Response) {
   try {
-    const { lineId } = req.params;
+    const lineId = req.params.lineId as string;
     const direction = req.query.direction as string | undefined;
     const maxAge = req.query.maxAge as string | undefined;
 
@@ -208,24 +208,22 @@ export async function getLiveRouteTracking(req: Request, res: Response) {
 export async function getRecentSightings(req: Request, res: Response) {
   try {
     const { limit = 50, cityId } = req.query;
+    const limitNum = Number(limit);
+    const cityIdStr = cityId as string | undefined;
 
-    let query = db.select({
+    // Build query with proper typing - avoid reassignment
+    const baseQuery = db.select({
       sighting: trainSightings,
       station: metroStations,
       line: metroLines,
     })
       .from(trainSightings)
       .innerJoin(metroStations, eq(trainSightings.stationId, metroStations.id))
-      .innerJoin(metroLines, eq(trainSightings.lineId, metroLines.id))
-      .orderBy(desc(trainSightings.timestamp))
-      .limit(Number(limit));
+      .innerJoin(metroLines, eq(trainSightings.lineId, metroLines.id));
 
-    // Filter by city if provided
-    if (cityId) {
-      query = query.where(eq(metroStations.cityId, cityId as string));
-    }
-
-    const results = await query;
+    const results = cityIdStr
+      ? await baseQuery.where(eq(metroStations.cityId, cityIdStr)).orderBy(desc(trainSightings.timestamp)).limit(limitNum)
+      : await baseQuery.orderBy(desc(trainSightings.timestamp)).limit(limitNum);
 
     return res.json({
       sightings: results.map(r => ({

@@ -7,14 +7,11 @@ export const getAllLines = async (req: Request, res: Response) => {
   try {
     const cityId = req.query.cityId as string | undefined;
 
-    let query = db.select().from(metroLines);
+    // Use separate paths to avoid query reassignment type issues
+    const lines = cityId
+      ? await db.select().from(metroLines).where(eq(metroLines.cityId, cityId)).orderBy(metroLines.displayOrder)
+      : await db.select().from(metroLines).orderBy(metroLines.displayOrder);
 
-    // Filter by cityId if provided
-    if (cityId) {
-      query = query.where(eq(metroLines.cityId, cityId as any));
-    }
-
-    const lines = await query.orderBy(metroLines.displayOrder);
     res.json(lines);
   } catch (error) {
     console.error('Error fetching metro lines:', error);
@@ -24,7 +21,7 @@ export const getAllLines = async (req: Request, res: Response) => {
 
 export const getLineById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const line = await db.select().from(metroLines).where(eq(metroLines.id, id)).limit(1);
 
     if (line.length === 0) {
@@ -43,13 +40,9 @@ export const getLinesWithStations = async (req: Request, res: Response) => {
     const cityId = req.query.cityId as string | undefined;
 
     // Get all metro lines ordered by displayOrder, filtered by cityId if provided
-    let query = db.select().from(metroLines);
-
-    if (cityId) {
-      query = query.where(eq(metroLines.cityId, cityId as any));
-    }
-
-    const lines = await query.orderBy(metroLines.displayOrder);
+    const lines = cityId
+      ? await db.select().from(metroLines).where(eq(metroLines.cityId, cityId)).orderBy(metroLines.displayOrder)
+      : await db.select().from(metroLines).orderBy(metroLines.displayOrder);
 
     // For each line, get its stations with sequence numbers
     const linesWithStations = await Promise.all(

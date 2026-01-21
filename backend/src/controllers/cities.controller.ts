@@ -49,7 +49,7 @@ export async function getAllCities(req: Request, res: Response) {
  */
 export async function getCityById(req: Request, res: Response) {
   try {
-    const { cityId } = req.params;
+    const cityId = req.params.cityId as string;
 
     const city = await db.select().from(cities).where(eq(cities.id, cityId)).get();
 
