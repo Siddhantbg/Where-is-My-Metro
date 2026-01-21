@@ -7,7 +7,7 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000,
+  timeout: 30000, // Increased from 10s to 30s to allow backend cold starts on Render free plan
 });
 
 // Response interceptor for error handling
