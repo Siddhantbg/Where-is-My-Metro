@@ -67,12 +67,13 @@ func runServer(config ServerConfig) {
 // corsMiddleware adds CORS headers for frontend access
 func corsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Allow requests from common frontend dev ports
+		// Allow requests from common frontend dev ports and production
 		origin := r.Header.Get("Origin")
 		allowedOrigins := map[string]bool{
-			"http://localhost:5173": true, // Vite dev server
-			"http://localhost:3000": true, // Common React port
-			"http://localhost:4173": true, // Vite preview
+			"http://localhost:5173":                        true, // Vite dev server
+			"http://localhost:3000":                        true, // Common React port
+			"http://localhost:4173":                        true, // Vite preview
+			"https://where-is-my-metro-nine.vercel.app":    true, // Production frontend
 		}
 
 		if allowedOrigins[origin] {
