@@ -1,5 +1,5 @@
 import db from '../config/database';
-import { metroLines, metroStations, lineStations, stationConnections, trainSchedules } from './schema';
+import { cities, metroLines, metroStations, lineStations, stationConnections, trainSchedules } from './schema';
 import linesData from './seeds/lines.json';
 import stationsData from './seeds/stations.json';
 
@@ -7,16 +7,45 @@ async function seed() {
   console.log('Starting database seeding...');
 
   try {
+    // Seed Cities first
+    console.log('Seeding cities...');
+    const citiesData = [
+      {
+        id: 'delhi',
+        name: 'Delhi',
+        displayName: 'Delhi Metro',
+        country: 'India',
+        timezone: 'Asia/Kolkata',
+        mapCenter: JSON.stringify({ lat: 28.7041, lng: 77.1025 }),
+        isActive: true,
+      },
+    ];
+
+    for (const city of citiesData) {
+      await db.insert(cities).values(city).onConflictDoNothing();
+    }
+    console.log(`✓ Seeded ${citiesData.length} cities`);
+
     // Seed Metro Lines
     console.log('Seeding metro lines...');
-    for (const line of linesData) {
+    const linesWithCity = linesData.map((line: any) => ({
+      ...line,
+      cityId: 'delhi',
+    }));
+
+    for (const line of linesWithCity) {
       await db.insert(metroLines).values(line).onConflictDoNothing();
     }
     console.log(`✓ Seeded ${linesData.length} metro lines`);
 
     // Seed Stations
     console.log('Seeding metro stations...');
-    for (const station of stationsData) {
+    const stationsWithCity = stationsData.map((station: any) => ({
+      ...station,
+      cityId: 'delhi',
+    }));
+
+    for (const station of stationsWithCity) {
       await db.insert(metroStations).values(station).onConflictDoNothing();
     }
     console.log(`✓ Seeded ${stationsData.length} metro stations`);
