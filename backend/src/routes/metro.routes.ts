@@ -4,6 +4,7 @@ import * as metroLinesController from '../controllers/metroLines.controller';
 import * as stationsController from '../controllers/stations.controller';
 import * as routesController from '../controllers/routes.controller';
 import * as trainSightingsController from '../controllers/trainSightings.controller';
+import * as liveTrackingController from '../controllers/liveTracking.controller';
 
 const router = Router();
 
@@ -29,5 +30,13 @@ router.post('/train-sightings', trainSightingsController.reportTrainSighting);
 router.get('/train-sightings/recent', trainSightingsController.getRecentSightings);
 router.get('/train-positions/:lineId', trainSightingsController.getTrainPositions);
 router.get('/live-tracking/:origin/:destination', trainSightingsController.getLiveRouteTracking);
+
+// In-Transit Live Tracking
+router.post('/live/trains/report', liveTrackingController.reportTrainLocation);
+router.post('/live/trains/attach', liveTrackingController.attachToTrain);
+router.post('/live/trains/detach', liveTrackingController.detachFromTrain);
+router.get('/live/trains', liveTrackingController.getLiveTrainsHandler);
+router.get('/live/trains/:trainId', liveTrackingController.getTrainDetails);
+router.get('/live/trains/:lineId/direction/:direction', liveTrackingController.getLineTrains);
 
 export default router;

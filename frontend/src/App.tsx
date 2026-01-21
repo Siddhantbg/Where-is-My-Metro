@@ -9,6 +9,7 @@ import { JourneyPlanner } from './components/journey/JourneyPlanner';
 import { RouteDisplay } from './components/journey/RouteDisplay';
 import { MapView } from './components/map/MapView';
 import { DataValidator } from './components/admin';
+import { InTransitTracker } from './components/tracking/InTransitTracker';
 
 function App() {
   const { userLocation, nearbyStations, currentJourney, setOrigin, selectedCity, setSelectedCity } = useStore();
@@ -224,6 +225,9 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* In-Transit Tracker */}
+      <InTransitTracker />
     </div>
   );
 }

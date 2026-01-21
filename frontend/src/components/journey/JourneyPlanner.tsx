@@ -4,9 +4,19 @@ import { LineSelectDropdown } from '../station/LineSelectDropdown';
 import { StationSelectDropdown } from '../station/StationSelectDropdown';
 import { useFindRoute } from '../../hooks/useFindRoute';
 import { MetroStation, MetroLine } from '../../types/metro';
+import { Zap } from 'lucide-react';
 
 export function JourneyPlanner() {
-  const { origin, destination, isCalculatingRoute, selectedCity, setOrigin, setDestination } = useStore();
+  const { 
+    origin, 
+    destination, 
+    isCalculatingRoute, 
+    selectedCity, 
+    setOrigin, 
+    setDestination,
+    setInTransitMode,
+    setInTransitLine,
+  } = useStore();
   const { findRoute, error } = useFindRoute();
   const [localOrigin, setLocalOrigin] = useState<MetroStation | null>(origin);
   const [localDestination, setLocalDestination] = useState<MetroStation | null>(destination);
@@ -73,11 +83,30 @@ export function JourneyPlanner() {
 
   const canFindRoute = localOrigin && localDestination && localOrigin.id !== localDestination.id;
 
+  const handleInTransitMode = () => {
+    if (originLine) {
+      setInTransitLine(originLine.id, 'forward');
+      setInTransitMode(true);
+    }
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">
-        Plan Your Journey
-      </h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold text-gray-800">
+          Plan Your Journey
+        </h2>
+        {originLine && (
+          <button
+            onClick={handleInTransitMode}
+            className="flex items-center gap-2 text-sm bg-green-50 hover:bg-green-100 text-green-700 px-3 py-1.5 rounded-lg font-medium transition-colors"
+            title="Already on a train? Track live positions"
+          >
+            <Zap className="w-4 h-4" />
+            In Transit
+          </button>
+        )}
+      </div>
 
       <div className="space-y-4">
         {/* Origin */}

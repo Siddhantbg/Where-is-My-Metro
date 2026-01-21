@@ -102,6 +102,72 @@ export const metroApi = {
     const response = await api.get<any>('/train-sightings/recent', { params });
     return response.data;
   },
+
+  // In-Transit Live Tracking APIs
+
+  // Report train location (for onboard tracking)
+  async reportTrainLocation(data: {
+    trainId: string;
+    lineId: string;
+    cityId: string;
+    latitude: number;
+    longitude: number;
+    direction: 'forward' | 'backward';
+    source: 'onboard' | 'platform' | 'observer';
+    userId?: string;
+    speed?: number;
+    accuracy?: number;
+  }): Promise<any> {
+    const response = await api.post<any>('/live/trains/report', data);
+    return response.data;
+  },
+
+  // Get all live trains
+  async getLiveTrains(lineId?: string, cityId?: string): Promise<any> {
+    const params: any = {};
+    if (lineId) params.lineId = lineId;
+    if (cityId) params.cityId = cityId;
+
+    const response = await api.get<any>('/live/trains', { params });
+    return response.data;
+  },
+
+  // Get specific train details
+  async getTrainDetails(trainId: string): Promise<any> {
+    const response = await api.get<any>(`/live/trains/${trainId}`);
+    return response.data;
+  },
+
+  // Get trains on a specific line and direction
+  async getLineTrains(
+    lineId: string,
+    direction: 'forward' | 'backward',
+    cityId?: string
+  ): Promise<any> {
+    const params = cityId ? { cityId } : {};
+    const response = await api.get<any>(`/live/trains/${lineId}/direction/${direction}`, { params });
+    return response.data;
+  },
+
+  // Attach to a train (start tracking)
+  async attachToTrain(data: {
+    userId: string;
+    trainId: string;
+    lineId: string;
+    cityId: string;
+  }): Promise<any> {
+    const response = await api.post<any>('/live/trains/attach', data);
+    return response.data;
+  },
+
+  // Detach from a train (stop tracking)
+  async detachFromTrain(data: {
+    userId: string;
+    trainId: string;
+  }): Promise<any> {
+    const response = await api.post<any>('/live/trains/detach', data);
+    return response.data;
+  },
 };
 
 export default metroApi;

@@ -3,8 +3,9 @@ import { devtools, persist } from 'zustand/middleware';
 import { LocationSlice, createLocationSlice } from './locationSlice';
 import { JourneySlice, createJourneySlice } from './journeySlice';
 import { TrackingSlice, createTrackingSlice } from './trackingSlice';
+import { InTransitModeState, createInTransitModeSlice } from './inTransitSlice';
 
-type StoreState = LocationSlice & JourneySlice & TrackingSlice;
+type StoreState = LocationSlice & JourneySlice & TrackingSlice & InTransitModeState;
 
 export const useStore = create<StoreState>()(
   devtools(
@@ -13,6 +14,7 @@ export const useStore = create<StoreState>()(
         ...createLocationSlice(...a),
         ...createJourneySlice(...a),
         ...createTrackingSlice(...a),
+        ...createInTransitModeSlice(...a),
       }),
       {
         name: 'metro-tracker-storage',
@@ -23,6 +25,10 @@ export const useStore = create<StoreState>()(
           origin: state.origin,
           destination: state.destination,
           currentJourney: state.currentJourney,
+          inTransitMode: state.inTransitMode,
+          inTransitLineId: state.inTransitLineId,
+          inTransitDirection: state.inTransitDirection,
+          activeTrainId: state.activeTrainId,
         }),
       }
     )
