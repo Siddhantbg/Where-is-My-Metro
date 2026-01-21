@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import api from '../services/api';
 
 interface LiveTrainData {
   trainId: string;
@@ -29,8 +30,8 @@ export function useTrainTracking(trainId: string | null) {
     if (!trainId) return;
 
     try {
-      const response = await fetch(`/api/live/trains/${trainId}`);
-      const data = await response.json();
+      const response = await api.get(`/live/trains/${trainId}`);
+      const data = response.data;
 
       if (data.success && data.train) {
         setTrain(data.train);
@@ -87,20 +88,16 @@ export function useTrainReporter(
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           try {
-            await fetch('/api/live/trains/report', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                trainId,
-                lineId,
-                cityId,
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                direction,
-                source: 'onboard',
-                accuracy: position.coords.accuracy,
-                userId: `user-${Date.now()}`, // Simple user ID; use real auth in production
-              }),
+            await api.post('/live/trains/report', {
+              trainId,
+              lineId,
+              cityId,
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              direction,
+              source: 'onboard',
+              accuracy: position.coords.accuracy,
+              userId: `user-${Date.now()}`, // Simple user ID; use real auth in production
             });
           } catch (err) {
             console.error('Failed to report train location:', err);
@@ -139,11 +136,11 @@ export function useLineLiveTrains(lineId: string | null, direction?: 'forward' |
     try {
       setLoading(true);
       const url = direction
-        ? `/api/live/trains/${lineId}/direction/${direction}`
-        : `/api/live/trains?lineId=${lineId}`;
+        ? `/live/trains/${lineId}/direction/${direction}`
+        : `/live/trains?lineId=${lineId}`;
 
-      const response = await fetch(url);
-      const data = await response.json();
+      const response = await api.get(url);
+      const data = response.data;
 
       if (data.success && Array.isArray(data.trains)) {
         setTrains(data.trains);
@@ -187,18 +184,14 @@ export function useTrainAttachment(
     if (!trainId) return;
 
     try {
-      const response = await fetch('/api/live/trains/attach', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          trainId,
-          lineId: trainId.split('-')[0], // Extract lineId from trainId
-          cityId: trainId.split('-')[1],
-        }),
+      const response = await api.post('/live/trains/attach', {
+        userId,
+        trainId,
+        lineId: trainId.split('-')[0], // Extract lineId from trainId
+        cityId: trainId.split('-')[1],
       });
 
-      const data = await response.json();
+      const data = response.data;
       if (data.success) {
         setIsAttached(true);
         setError(null);
@@ -212,16 +205,12 @@ export function useTrainAttachment(
     if (!trainId) return;
 
     try {
-      const response = await fetch('/api/live/trains/detach', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          trainId,
-        }),
+      const response = await api.post('/live/trains/detach', {
+        userId,
+        trainId,
       });
 
-      const data = await response.json();
+      const data = response.data;
       if (data.success) {
         setIsAttached(false);
         setError(null);
