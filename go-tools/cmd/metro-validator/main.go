@@ -67,8 +67,13 @@ func main() {
 		Short: "Start HTTP server for frontend integration",
 		Long:  "Starts an HTTP server that exposes validation as a REST API for frontend consumption.",
 		Run: func(cmd *cobra.Command, args []string) {
+			// Use PORT from environment if available (for cloud deployments)
+			port := os.Getenv("PORT")
+			if port == "" {
+				port = serverPort
+			}
 			config := ServerConfig{
-				Port:   serverPort,
+				Port:   port,
 				DBPath: dbPath,
 			}
 			runServer(config)

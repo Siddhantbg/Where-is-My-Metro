@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: metro-validator
+    env: go
+    region: singapore
+    plan: free
+    buildCommand: go build -o metro-validator ./cmd/metro-validator
+    startCommand: ./metro-validator serve
+    healthCheckPath: /health
+    envVars:
+      - key: DB_PATH
+        value: ../backend/data/metro.db
