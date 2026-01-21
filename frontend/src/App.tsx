@@ -26,6 +26,7 @@ function App() {
   const [showManualSelect, setShowManualSelect] = useState(false);
   const [showCitySelect, setShowCitySelect] = useState(false);
   const [showCitySuccess, setShowCitySuccess] = useState(false);
+  const [isChangingLocation, setIsChangingLocation] = useState(false);
   const [showLocationChangeWarning, setShowLocationChangeWarning] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
 
@@ -42,15 +43,14 @@ function App() {
   };
 
   const handleCitySelect = (cityId: string) => {
-    // If already had a city selected, show warning and clear journey
-    if (selectedCity && selectedCity !== cityId) {
+    // Clear journey only if this is a location change (not first-time selection)
+    if (isChangingLocation && selectedCity && selectedCity !== cityId) {
       clearJourney();
-      setShowLocationChangeWarning(true);
-      setTimeout(() => setShowLocationChangeWarning(false), 4000);
     }
     
     setSelectedCity(cityId);
     setShowCitySelect(false);
+    setIsChangingLocation(false);
     setShowCitySuccess(true);
 
     // Hide success animation after 2 seconds
@@ -65,8 +65,17 @@ function App() {
 
   const handleChangeLocation = () => {
     setShowLocationChangeWarning(true);
-    setTimeout(() => setShowLocationChangeWarning(false), 4000);
+  };
+
+  const handleConfirmLocationChange = () => {
+    setShowLocationChangeWarning(false);
+    setIsChangingLocation(true);
     setShowCitySelect(true);
+  };
+
+  const handleCancelLocationChange = () => {
+    setShowLocationChangeWarning(false);
+    setIsChangingLocation(false);
   };
 
   return (
@@ -116,13 +125,33 @@ function App() {
         </div>
       </header>
 
-      {/* Location change warning */}
+      {/* Location change confirmation dialog */}
       {showLocationChangeWarning && (
-        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 flex items-center gap-3 bg-orange-50 border border-orange-300 rounded-lg px-4 py-3 max-w-md shadow-lg animate-slide-down">
-          <AlertCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
-          <div>
-            <p className="text-sm font-medium text-orange-900">Location changed</p>
-            <p className="text-xs text-orange-800">Your previous route has been reset</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full mx-4 animate-scale-in">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-orange-100">
+                <AlertCircle className="h-6 w-6 text-orange-600" />
+              </div>
+              <h3 className="text-lg font-medium text-gray-900">Change Location?</h3>
+            </div>
+            <p className="text-sm text-gray-600 mb-6">
+              Changing your location will reset your current route. You'll need to plan a new journey in the selected city.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleCancelLocationChange}
+                className="flex-1 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmLocationChange}
+                className="flex-1 px-4 py-2 text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 rounded-lg transition-colors"
+              >
+                Change Location
+              </button>
+            </div>
           </div>
         </div>
       )}
