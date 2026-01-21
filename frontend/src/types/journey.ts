@@ -7,17 +7,19 @@ export interface RouteSegment {
 }
 
 export interface Transfer {
-  station: MetroStation;
-  fromLine: MetroLine;
-  toLine: MetroLine;
+  station: string;
+  fromLine: string;
+  toLine: string;
 }
 
+// Journey type matching the API response from /routes/find
 export interface Journey {
   origin: MetroStation;
   destination: MetroStation;
-  route: RouteSegment[];
+  route: string[]; // Array of station IDs
   transfers: Transfer[];
-  estimatedDurationSeconds: number;
+  estimatedDuration: number; // Duration in seconds
   totalStations: number;
-  nextTrainDeparture?: Date;
+  nextTrainDeparture?: string;
+  lineId?: string; // Primary line ID for the journey
 }

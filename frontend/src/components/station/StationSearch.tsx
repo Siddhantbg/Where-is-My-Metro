@@ -15,7 +15,7 @@ export function StationSearch({
   excludeStationId,
   selectedStation,
 }: StationSearchProps) {
-  const { query, setQuery, results, loading, clearSearch } = useStationSearch();
+  const { query, setQuery, results, loading } = useStationSearch();
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const dropdownRef = useRef<HTMLDivElement>(null);

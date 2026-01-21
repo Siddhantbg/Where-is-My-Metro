@@ -8,10 +8,11 @@ import { NearbyStations } from './components/location/NearbyStations';
 import { JourneyPlanner } from './components/journey/JourneyPlanner';
 import { RouteDisplay } from './components/journey/RouteDisplay';
 import { MapView } from './components/map/MapView';
+import { DataValidator } from './components/admin';
 
 function App() {
   const { userLocation, nearbyStations, currentJourney, setOrigin, selectedCity, setSelectedCity } = useStore();
-  const { location, error: geoError, requestLocation } = useGeolocation();
+  const { location } = useGeolocation();
   const [showManualSelect, setShowManualSelect] = useState(false);
   const [showCitySelect, setShowCitySelect] = useState(false);
   const [showCitySuccess, setShowCitySuccess] = useState(false);
@@ -162,6 +163,9 @@ function App() {
                 </p>
               </div>
             )}
+
+            {/* Data Validator (Go Service) - Admin Tool */}
+            <DataValidator />
           </aside>
 
           {/* Right Panel: Map */}

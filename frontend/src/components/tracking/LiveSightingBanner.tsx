@@ -15,7 +15,7 @@ interface LiveSightingBannerProps {
   lastUpdated: Date | null;
 }
 
-export function LiveSightingBanner({ livePosition, lastUpdated }: LiveSightingBannerProps) {
+export function LiveSightingBanner({ livePosition }: LiveSightingBannerProps) {
   const getConfidenceColor = (confidence: string) => {
     switch (confidence) {
       case 'high':

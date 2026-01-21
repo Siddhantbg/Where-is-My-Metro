@@ -27,7 +27,7 @@ export function RouteDisplay() {
   const segments = useMemo<RouteSegment[]>(() => {
     if (!currentJourney || !currentJourney.route) return [];
 
-    const route = currentJourney.route as string[];
+    const route = currentJourney.route;
     const segs: RouteSegment[] = [];
 
     for (let i = 0; i < route.length - 1; i++) {
@@ -46,7 +46,7 @@ export function RouteDisplay() {
   const stationsMap = useMemo(() => {
     const map = new Map();
     if (currentJourney && currentJourney.route) {
-      (currentJourney.route as string[]).forEach((stationId: string) => {
+      currentJourney.route.forEach((stationId: string) => {
         map.set(stationId, {
           id: stationId,
           name: stationId
@@ -65,12 +65,11 @@ export function RouteDisplay() {
     trainPosition,
     currentTime,
     departureTime,
-    isTracking: trackingActive,
     startTracking,
     stopTracking,
     resetTracking,
   } = useTrainTracking({
-    route: (currentJourney?.route as string[]) || [],
+    route: currentJourney?.route || [],
     segments,
     schedule: mockSchedule,
     autoStart: false,
@@ -80,7 +79,7 @@ export function RouteDisplay() {
     return null;
   }
 
-  const { route, transfers, estimatedDuration, nextTrainDeparture } = currentJourney as any;
+  const { route, transfers, estimatedDuration } = currentJourney;
 
   const formatTime = (isoString: string) => {
     const date = new Date(isoString);

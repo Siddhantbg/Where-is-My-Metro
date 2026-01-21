@@ -18,11 +18,6 @@ export function Timeline({ route, stations, trainPosition, transfers }: Timeline
     return null;
   }
 
-  const getLineColor = (stationId: string): string => {
-    // Default color - will be enhanced with actual line colors later
-    return '#3B82F6'; // Blue
-  };
-
   const isTransferStation = (stationId: string): boolean => {
     return transfers.some(t => t.station === stationId);
   };
@@ -40,7 +35,6 @@ export function Timeline({ route, stations, trainPosition, transfers }: Timeline
           const isTransfer = isTransferStation(stationId);
           const isCurrent = trainPosition?.currentStationIndex === index;
           const isPassed = trainPosition ? index < trainPosition.currentStationIndex : false;
-          const isUpcoming = trainPosition ? index > trainPosition.currentStationIndex : true;
 
           // Train indicator position (between stations)
           const showTrain =

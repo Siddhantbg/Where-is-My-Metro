@@ -1,6 +1,5 @@
 import api from './api';
-import { MetroLine, MetroStation, NearbyStation } from '../types/metro';
-import { Journey } from '../types/journey';
+import { MetroLine, MetroStation } from '../types/metro';
 
 export const metroApi = {
   // Get all metro lines

@@ -35,8 +35,8 @@ export function ReportTrainButton({ currentStationId, lineId }: ReportTrainButto
         lineId,
         stationId: currentStationId,
         direction: selectedDirection,
-        userLatitude: userLocation?.lat,
-        userLongitude: userLocation?.lng,
+        userLatitude: userLocation?.latitude,
+        userLongitude: userLocation?.longitude,
       });
 
       // Show success animation
